@@ -39,7 +39,7 @@ export default class App extends Component {
               <Route 
                   path="/Auth" 
                   exact
-                  render={(routerProps) => <AuthPage {...routerProps} />} 
+                  render={(routerProps) => <AuthPage auth={this.handleAuth} {...routerProps} />} 
               />
           </Switch>
       </Router>

@@ -25,7 +25,10 @@ export default class AuthPage extends Component {
       password: this.state.signUpPassword
     })
 
-    this.props.handleToken(userData.body.token)
+    console.log(userData);
+
+    // this.props.handleToken(userData.body.token)
+    // this.props.history.push('/')
   }
 
   displaySignIn = () => {
