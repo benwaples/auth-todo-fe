@@ -25,7 +25,18 @@ export default class AuthPage extends Component {
       password: this.state.signUpPassword
     })
 
-    console.log(userData);
+
+    this.props.auth(userData.body.token)
+    this.props.history.push('/')
+  }
+
+  handleSignIn = async (e) => {
+    e.preventDefault();
+
+    const userData = await signIn({
+      email: this.state.signInEmail,
+      password: this.state.signInPassword
+    })
 
     this.props.auth(userData.body.token)
     this.props.history.push('/')
@@ -41,12 +52,20 @@ export default class AuthPage extends Component {
 
   handleSignUpEmail = (e) => {
     this.setState({ signUpEmail: e.target.value })
-    console.log(this.state.signUpEmail)
   }
   
   handleSignUpPassword = (e) => {
     this.setState({ signUpPassword: e.target.value })
-    console.log(this.state.signUpPassword)
+  }
+  
+  handleSignInEmail = (e) => {
+    this.setState({ signInEmail: e.target.value })
+    console.log(this.state.signInEmail)
+  }
+  
+  handleSignInPassword = (e) => {
+    this.setState({ signInPassword: e.target.value })
+    console.log(this.state.signInPassword)
   }
 
   render() {
@@ -55,7 +74,10 @@ export default class AuthPage extends Component {
         <h2 onClick={this.displaySignIn}>Sign In</h2>
         <h2 onClick={this.displaySignUp}>Sign Up</h2>
         {
-          this.state.signIn && <DisplaySignIn />
+          this.state.signIn && <DisplaySignIn
+          handleSignIn={this.handleSignIn}
+          handleSignInEmail={this.handleSignInEmail}
+          handleSignInPassword={this.handleSignInPassword} />
         }
         {
           this.state.signUp && <DisplaySignUp 

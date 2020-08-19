@@ -12,7 +12,7 @@ export function signUp(userData) {
 
 export function signIn(userData) {
   try {
-    return request.post(`${URL}/auth/signup`, userData)
+    return request.post(`${URL}auth/signin`, userData)
   } catch(e) {
     throw { error: e.message }
   }

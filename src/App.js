@@ -18,6 +18,8 @@ export default class App extends Component {
     this.setState({ token: token})
 
     localStorage.setItem('TOKEN', token)
+
+    console.log(this.state.token);
   }
 
   handleSignOut = () => {
