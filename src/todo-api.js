@@ -18,3 +18,16 @@ export function signIn(userData) {
   }
 }
 
+
+export function fetchList() {
+  const token = localStorage.getItem('TOKEN')
+
+  try {
+    return request
+              .get(`${URL}api/ToDos`)
+              .set('Authorization', token)
+  } catch(e) {
+    throw { error: e.message }
+  }
+}
+

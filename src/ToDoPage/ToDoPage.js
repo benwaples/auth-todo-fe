@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import {
   Link
 } from 'react-router-dom';
+import { fetchList } from '../todo-api.js'
 
-export default class HomePage extends Component {
+export default class ToDoPage extends Component {
   render() {
     return (
       <div>
-        <h1>Login to see your to do list</h1>
-        <Link to='/auth'><p>Login</p></Link>
+        
       </div>
     )
   }

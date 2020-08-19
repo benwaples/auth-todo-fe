@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import AuthPage from './AuthPage/AuthPage.js' 
 import HomePage from './HomePage/HomePage.js' 
+import ToDoPage from './ToDoPage/ToDoPage.js' 
 
 export default class App extends Component {
 
@@ -39,9 +40,14 @@ export default class App extends Component {
                   render={(routerProps) => <HomePage {...routerProps} />} 
               />
               <Route 
-                  path="/Auth" 
+                  path="/auth" 
                   exact
                   render={(routerProps) => <AuthPage auth={this.handleAuth} {...routerProps} />} 
+              />
+              <Route 
+                  path="/list" 
+                  exact
+                  render={(routerProps) => <ToDoPage token={this.state.token} {...routerProps} />} 
               />
           </Switch>
       </Router>
