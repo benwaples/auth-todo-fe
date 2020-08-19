@@ -27,8 +27,8 @@ export default class AuthPage extends Component {
 
     console.log(userData);
 
-    // this.props.handleToken(userData.body.token)
-    // this.props.history.push('/')
+    this.props.auth(userData.body.token)
+    this.props.history.push('/')
   }
 
   displaySignIn = () => {
