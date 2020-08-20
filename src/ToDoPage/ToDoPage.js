@@ -5,6 +5,7 @@ import {
   changeToDo,
   deleteTodo } from '../todo-api.js'
 import MakeToDo from './MakeToDo.js'
+import RenderCompleted from './RenderCompleted.js'
 
 export default class ToDoPage extends Component {
 
@@ -47,7 +48,6 @@ export default class ToDoPage extends Component {
 
   handleToDo = (e) => {
     this.setState({ newToDo: e.target.value })
-    console.log(this.state.newToDo, 'state value for new todo');
   }
 
   handleFinish = async (todo) => {
@@ -95,7 +95,7 @@ export default class ToDoPage extends Component {
             :
             this.state.allToDos.map(toDo => {
               if(toDo.completed){
-              return <li key={toDo.id} className="center">{toDo.todo}<p className="deleteButton" onClick={() => {this.handleDelete(toDo.id)}} >Delete!</p></li>
+              return <RenderCompleted toDo={toDo} handleDelete={this.handleDelete} />
             }})
           }
         </section>
