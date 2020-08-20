@@ -1,7 +1,7 @@
 /* eslint-disable no-throw-literal */
 import request from 'superagent';
 
-const URL = 'http://localhost:3000/';
+const URL = 'https://evening-coast-54434.herokuapp.com/';
 
 export function signUp(userData) {
   try {
