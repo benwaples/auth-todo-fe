@@ -43,11 +43,11 @@ export default class AuthPage extends Component {
   }
 
   displaySignIn = () => {
-    this.setState({ signIn: true })
+    this.setState({ signIn: true, signUp: false })
   }
   
   displaySignUp = () => {
-    this.setState({ signUp: true })
+    this.setState({ signUp: true, signIn: false })
   }
 
   handleSignUpEmail = (e) => {

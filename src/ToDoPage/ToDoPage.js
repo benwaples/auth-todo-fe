@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import {
-  Link
-} from 'react-router-dom';
 import { 
   fetchList, 
   makeToDo,
@@ -20,6 +17,9 @@ export default class ToDoPage extends Component {
   }
 
   componentDidMount = async () => {
+    if (!this.props.checkState()){
+       this.props.history.push('/auth')
+    } else {
     this.setState({ isLoading: true})
     const data = await fetchList()
 
@@ -27,6 +27,7 @@ export default class ToDoPage extends Component {
     console.log(data.body, 'all to do')
 
     this.setState({ isLoading: false})
+    }
   }
 
   handleNewToDoSubmit = async (e) => {

@@ -24,6 +24,14 @@ export default class App extends Component {
     console.log(this.state.token);
   }
 
+  checkState = () => {
+    if(this.state.token) {
+      return true 
+    }else {
+      return false;
+    } 
+  }
+
   handleSignOut = () => {
     this.setState({ token: ''});
 
@@ -43,12 +51,17 @@ export default class App extends Component {
               <Route 
                   path="/auth" 
                   exact
-                  render={(routerProps) => <AuthPage auth={this.handleAuth} {...routerProps} />} 
+                  render={(routerProps) => <AuthPage 
+                    auth={this.handleAuth}
+                    {...routerProps} />} 
               />
               <Route 
                   path="/list" 
                   exact
-                  render={(routerProps) => <ToDoPage token={this.state.token} {...routerProps} />} 
+                  render={(routerProps) => <ToDoPage 
+                    token={this.state.token} 
+                    checkState={this.checkState} 
+                    {...routerProps} />} 
               />
           </Switch>
       </Router>
