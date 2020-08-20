@@ -25,41 +25,70 @@ export default class AuthPage extends Component {
       password: this.state.signUpPassword
     })
 
-    this.props.handleToken(userData.body.token)
+
+    this.props.auth(userData.body.token)
+    this.props.history.push('/list')
+  }
+
+  handleSignIn = async (e) => {
+    e.preventDefault();
+
+    const userData = await signIn({
+      email: this.state.signInEmail,
+      password: this.state.signInPassword
+    })
+
+    this.props.auth(userData.body.token)
+    this.props.history.push('/list')
   }
 
   displaySignIn = () => {
-    this.setState({ signIn: true })
+    this.setState({ signIn: true, signUp: false })
   }
   
   displaySignUp = () => {
-    this.setState({ signUp: true })
+    this.setState({ signUp: true, signIn: false })
   }
 
   handleSignUpEmail = (e) => {
     this.setState({ signUpEmail: e.target.value })
-    console.log(this.state.signUpEmail)
   }
   
   handleSignUpPassword = (e) => {
     this.setState({ signUpPassword: e.target.value })
-    console.log(this.state.signUpPassword)
+  }
+  
+  handleSignInEmail = (e) => {
+    this.setState({ signInEmail: e.target.value })
+    console.log(this.state.signInEmail)
+  }
+  
+  handleSignInPassword = (e) => {
+    this.setState({ signInPassword: e.target.value })
+    console.log(this.state.signInPassword)
   }
 
   render() {
     return (
       <div className="auth">
-        <h2 onClick={this.displaySignIn}>Sign In</h2>
-        <h2 onClick={this.displaySignUp}>Sign Up</h2>
-        {
-          this.state.signIn && <DisplaySignIn />
-        }
-        {
-          this.state.signUp && <DisplaySignUp 
-          handleSignUp={this.handleSignUp}
-          handleSignUpEmail={this.handleSignUpEmail}
-          handleSignUpPassword={this.handleSignUpPassword} />
-        }
+        <div className="center">
+          <h2 onClick={this.displaySignIn}>Sign In</h2>
+          {
+            this.state.signIn && <DisplaySignIn
+            handleSignIn={this.handleSignIn}
+            handleSignInEmail={this.handleSignInEmail}
+            handleSignInPassword={this.handleSignInPassword} />
+          }
+        </div>
+        <div className="center">
+          <h2 onClick={this.displaySignUp}>Sign Up</h2>
+          {
+            this.state.signUp && <DisplaySignUp 
+            handleSignUp={this.handleSignUp}
+            handleSignUpEmail={this.handleSignUpEmail}
+            handleSignUpPassword={this.handleSignUpPassword} />
+          }
+        </div>
       </div>
     )
   }

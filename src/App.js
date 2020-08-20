@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './App.css';
 import {
   BrowserRouter as Router, 
   Route,
@@ -7,6 +8,7 @@ import {
 } from 'react-router-dom';
 import AuthPage from './AuthPage/AuthPage.js' 
 import HomePage from './HomePage/HomePage.js' 
+import ToDoPage from './ToDoPage/ToDoPage.js' 
 
 export default class App extends Component {
 
@@ -18,6 +20,16 @@ export default class App extends Component {
     this.setState({ token: token})
 
     localStorage.setItem('TOKEN', token)
+
+    console.log(this.state.token);
+  }
+
+  checkState = () => {
+    if(this.state.token) {
+      return true 
+    }else {
+      return false;
+    } 
   }
 
   handleSignOut = () => {
@@ -37,9 +49,19 @@ export default class App extends Component {
                   render={(routerProps) => <HomePage {...routerProps} />} 
               />
               <Route 
-                  path="/Auth" 
+                  path="/auth" 
                   exact
-                  render={(routerProps) => <AuthPage {...routerProps} />} 
+                  render={(routerProps) => <AuthPage 
+                    auth={this.handleAuth}
+                    {...routerProps} />} 
+              />
+              <Route 
+                  path="/list" 
+                  exact
+                  render={(routerProps) => <ToDoPage 
+                    token={this.state.token} 
+                    checkState={this.checkState} 
+                    {...routerProps} />} 
               />
           </Switch>
       </Router>
