@@ -6,6 +6,7 @@ import {
   deleteTodo } from '../todo-api.js'
 import MakeToDo from './MakeToDo.js'
 import RenderCompleted from './RenderCompleted.js'
+import RenderToDo from './RenderToDo.js'
 
 export default class ToDoPage extends Component {
 
@@ -84,7 +85,7 @@ export default class ToDoPage extends Component {
             :
             this.state.allToDos.map(toDo => {
               if(!toDo.completed){
-              return <li key={toDo.id} className="center">{toDo.todo}<p className="doneButton" onClick={() => {this.handleFinish(toDo)}} >Done!</p></li>
+              return <RenderToDo toDo={toDo} handleFinish={this.handleFinish} />
             }})
           }
           </ul>
@@ -93,9 +94,9 @@ export default class ToDoPage extends Component {
         {
             this.state.isLoading ? 'loading' 
             :
-            this.state.allToDos.map(toDo => {
-              if(toDo.completed){
-              return <RenderCompleted toDo={toDo} handleDelete={this.handleDelete} />
+            this.state.allToDos.map(done => {
+              if(done.completed){
+              return <RenderCompleted todo={done} handleDelete={this.handleDelete} />
             }})
           }
         </section>
