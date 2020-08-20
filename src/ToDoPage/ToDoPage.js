@@ -37,7 +37,7 @@ export default class ToDoPage extends Component {
 
     try { 
       await makeToDo({todo: this.state.newToDo})
-      this.setState()
+      this.setState({ newToDo: ''})
 
       const data = await fetchList()
       this.setState({ allToDos: data.body })
@@ -79,31 +79,37 @@ export default class ToDoPage extends Component {
     return (
       <div className="toDoList">
         <section>
+          <h2>To Do:</h2>
           <ul>
-          {
-            this.state.isLoading ? 'loading' 
-            :
-            this.state.allToDos.map(toDo => {
-              if(!toDo.completed){
-              return <RenderToDo toDo={toDo} handleFinish={this.handleFinish} />
-            }})
-          }
+            {
+              this.state.isLoading ? 'loading' 
+              :
+              this.state.allToDos.map(toDo => {
+                if(!toDo.completed){
+                return <RenderToDo toDo={toDo} handleFinish={this.handleFinish} />
+              }})
+            }
           </ul>
         </section>
         <section>
-        {
-            this.state.isLoading ? 'loading' 
-            :
-            this.state.allToDos.map(done => {
-              if(done.completed){
-              return <RenderCompleted todo={done} handleDelete={this.handleDelete} />
-            }})
-          }
+          <h2>Finished</h2>
+          <ul>
+            {
+                this.state.isLoading ? 'loading' 
+                :
+                this.state.allToDos.map(done => {
+                  if(done.completed){
+                  return <RenderCompleted todo={done} handleDelete={this.handleDelete} />
+                }})
+              }
+          </ul>
         </section>
         <section>
+          <h2>Add A To Do:</h2>
           <MakeToDo 
           newToDo={this.handleNewToDoSubmit}
-          handleToDo={this.handleToDo} />
+          handleToDo={this.handleToDo}
+          stateNewToDo={this.state.newToDo} />
         </section>
       </div>
     )

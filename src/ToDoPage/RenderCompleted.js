@@ -9,9 +9,12 @@ export default class RenderCompleted extends Component {
     } = this.props
 
     return (
-      <div>
-        <li key={todo.id} className="center">{todo.todo}<p className="deleteButton" onClick={() => { handleDelete(todo.id) } }>Delete!</p></li>
-      </div>
+      
+        <li key={todo.id} className="center">
+          {todo.todo}
+          <p className="deleteButton" onClick={() => { handleDelete(todo.id) } }>Delete!</p>
+        </li>
+      
     )
   }
 }

@@ -11,8 +11,7 @@ export default class MakeToDo extends Component {
     return (
       <form onSubmit={newToDo} className="center">
         <label>
-          <p>Add A To Do:</p>
-          <input onChange={handleToDo} />
+          <input onChange={handleToDo} value={this.props.stateNewToDo}/>
         </label>
         <button>add</button>
       </form>

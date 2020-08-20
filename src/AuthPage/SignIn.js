@@ -10,13 +10,13 @@ export default class SignIn extends Component {
 
     return (
       <div>
-        <form onSubmit={handleSignIn}>
+        <form className="sign" onSubmit={handleSignIn}>
           <label>
-            Email
+            <h5>Email</h5>
             <input type="email" onChange={handleSignInEmail} />
           </label>
           <label>
-            Password
+            <h5>Password</h5>
             <input type="password" onChange={handleSignInPassword} />
           </label>
           <button>Sign In</button>

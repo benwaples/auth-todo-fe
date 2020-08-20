@@ -71,20 +71,24 @@ export default class AuthPage extends Component {
   render() {
     return (
       <div className="auth">
-        <h2 onClick={this.displaySignIn}>Sign In</h2>
-        <h2 onClick={this.displaySignUp}>Sign Up</h2>
-        {
-          this.state.signIn && <DisplaySignIn
-          handleSignIn={this.handleSignIn}
-          handleSignInEmail={this.handleSignInEmail}
-          handleSignInPassword={this.handleSignInPassword} />
-        }
-        {
-          this.state.signUp && <DisplaySignUp 
-          handleSignUp={this.handleSignUp}
-          handleSignUpEmail={this.handleSignUpEmail}
-          handleSignUpPassword={this.handleSignUpPassword} />
-        }
+        <div className="center">
+          <h2 onClick={this.displaySignIn}>Sign In</h2>
+          {
+            this.state.signIn && <DisplaySignIn
+            handleSignIn={this.handleSignIn}
+            handleSignInEmail={this.handleSignInEmail}
+            handleSignInPassword={this.handleSignInPassword} />
+          }
+        </div>
+        <div className="center">
+          <h2 onClick={this.displaySignUp}>Sign Up</h2>
+          {
+            this.state.signUp && <DisplaySignUp 
+            handleSignUp={this.handleSignUp}
+            handleSignUpEmail={this.handleSignUpEmail}
+            handleSignUpPassword={this.handleSignUpPassword} />
+          }
+        </div>
       </div>
     )
   }
