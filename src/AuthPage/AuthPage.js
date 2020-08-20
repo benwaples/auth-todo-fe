@@ -27,7 +27,7 @@ export default class AuthPage extends Component {
 
 
     this.props.auth(userData.body.token)
-    this.props.history.push('/ToDoPage')
+    this.props.history.push('/list')
   }
 
   handleSignIn = async (e) => {
@@ -39,7 +39,7 @@ export default class AuthPage extends Component {
     })
 
     this.props.auth(userData.body.token)
-    this.props.history.push('/ToDoPage')
+    this.props.history.push('/list')
   }
 
   displaySignIn = () => {
